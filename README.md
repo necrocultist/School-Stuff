@@ -1,2 +1,3 @@
-# Linear-Algebra-Homeworks
-My Solutions for the Linear Algebra (MAT281E) Assignments from 2021 Fall Term. (80%-100% correct)
+# School Stuff
+
+Various Projects, homeworks and exams I've done throughout my education at ITU Computer Engineering
