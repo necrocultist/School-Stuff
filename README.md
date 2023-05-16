@@ -11,4 +11,4 @@ Various Projects, homeworks and exams I've done throughout my education at ITU C
 
 ## Authors
 
-[@necrocultist.itch.io](https://necrocultist.itch.io)
+[@necrocultist.itch.io](https://github.com/necrocultist)
