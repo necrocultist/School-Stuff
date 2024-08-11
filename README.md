@@ -4,12 +4,24 @@
 
 Various Projects, homeworks, and exams I've done throughout my education at ITU Computer Engineering.
 
-# Other Repositories
-- [BLG 223E - Data Structures](./Second\ Grade/Data\ Structures\ (BLG\ 223E))
-- [BLG 252E - Object Oriented Programming](./Second\ Grade/Object\ Oriented\ Programming\ (BLG\ 252E))
-- [BLG 242E - Logic Circuits Laboratory](./Second\ Grade/Logic\ Circuits\ Laboratory\ (BLG\ 242E))
-- [BLG 222E - Computer Organization](./Second\ Grade/Computer\ Organization\ (BLG\ 222E))
+# Included Courses
+1. First Grade
+    * Intr. to Information Systems
+    * Linear Algebra and Applicat
+    * Intr to Sci&Eng Comp (C)
+2. Second Grade
+    * Data Structures
+    * Object Oriented Programming
+    * Logic Circuits Laboratory
+    * Computer Organization
+3. Third Grade
+    * Analysis of Algorithms I
+    * Analysis of Algorithms II
+    * Computer Architecture
+    * Computer Operating Systems
+    * Introduction to Bioinformatics
+    * Operations Research
 
 ## Authors
 
-[@necrocultist.itch.io](https://github.com/necrocultist)
+[@necrocultist](https://github.com/necrocultist)
