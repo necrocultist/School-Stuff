@@ -1,0 +1,153 @@
+- compile:
+    run: g++ main.cpp -o main -Wall -Werror
+    blocker: true
+
+- case_1:
+    run: ./main 1
+    script: 
+        - expect: "Best Schedule for Each Floor"
+
+        - expect: "Floor_1 --> Priority Gain: 340"
+        - expect: "Floor_1\tRoom_1\t07:00\t09:00"
+        - expect: "Floor_1\tRoom_2\t09:00\t11:00"
+        - expect: "Floor_1\tRoom_2\t12:00\t14:00"
+        - expect: "Floor_1\tRoom_2\t15:00\t17:00"
+
+        - expect: "Floor_2 --> Priority Gain: 240"
+        - expect: "Floor_2\tRoom_2\t09:00\t12:00"
+        - expect: "Floor_2\tRoom_1\t13:00\t16:00"
+        - expect: "Floor_2\tRoom_1\t16:00\t19:00"
+
+        - expect: "Floor_3 --> Priority Gain: 325"
+        - expect: "Floor_3\tRoom_2\t09:00\t10:00"
+        - expect: "Floor_3\tRoom_1\t10:00\t11:00"
+        - expect: "Floor_3\tRoom_2\t11:00\t12:00"
+        - expect: "Floor_3\tRoom_3\t12:00\t13:00"
+        - expect: "Floor_3\tRoom_3\t13:00\t14:00"
+        - expect: "Floor_3\tRoom_1\t14:00\t15:00"
+        - expect: "Floor_3\tRoom_2\t15:00\t16:00"
+        - expect: "Floor_3\tRoom_3\t16:00\t17:00"
+        - expect: "Floor_3\tRoom_3\t17:00\t18:00"
+
+        - expect: "Best Use of Budget"
+        - expect: "Total Value --> 34.8"
+
+        - expect: "Chair_3"
+        - expect: "Chair_2"
+        - expect: "Chair_1"
+        - expect: "Keyboard_2"
+        - expect: "Keyboard_1"
+        - expect: "Computer_1"
+        - expect: "Desk_3"
+        - expect: "Desk_2"
+        - expect: "Desk_1"
+        - expect: "Cable_Set_2"
+        - expect: "Cable_Set_1"
+        - expect: "Computer_3"
+        - expect: "Computer_2"
+        - expect: "Monitor_2"
+        - expect: "Monitor_1"
+        - expect: _EOF_
+
+
+- case_2:
+    run: ./main 2
+    script: 
+        - expect: "Best Schedule for Each Floor"
+
+        - expect: "Floor_1 --> Priority Gain: 585"
+        - expect: "Floor_1\tRoom_1\t08:15\t10:00"
+        - expect: "Floor_1\tRoom_1\t10:15\t11:30"
+        - expect: "Floor_1\tRoom_1\t12:00\t13:30"
+        - expect: "Floor_1\tRoom_1\t13:40\t15:10"
+        - expect: "Floor_1\tRoom_1\t15:30\t17:00"
+        - expect: "Floor_1\tRoom_3\t17:00\t18:00"
+        - expect: "Floor_1\tRoom_3\t18:15\t19:15"
+        - expect: "Floor_1\tRoom_3\t19:40\t20:40"
+
+        - expect: "Floor_2 --> Priority Gain: 450"
+        - expect: "Floor_2\tRoom_6\t07:35\t09:05"
+        - expect: "Floor_2\tRoom_6\t09:40\t11:10"
+        - expect: "Floor_2\tRoom_5\t11:10\t12:55"
+        - expect: "Floor_2\tRoom_5\t13:20\t15:05"
+        - expect: "Floor_2\tRoom_5\t15:30\t17:15"
+        - expect: "Floor_2\tRoom_5\t17:40\t19:25"
+
+        - expect: "Floor_3 --> Priority Gain: 425"
+        - expect: "Floor_3\tRoom_2\t08:15\t10:00"
+        - expect: "Floor_3\tRoom_2\t10:45\t12:30"
+        - expect: "Floor_3\tRoom_2\t13:15\t15:00"
+        - expect: "Floor_3\tRoom_2\t15:45\t17:30"
+        - expect: "Floor_3\tRoom_2\t18:15\t20:00"
+
+        - expect: "Floor_4 --> Priority Gain: 475"
+        - expect: "Floor_4\tRoom_1\t09:45\t11:30"
+        - expect: "Floor_4\tRoom_1\t11:50\t13:35"
+        - expect: "Floor_4\tRoom_1\t14:15\t16:00"
+        - expect: "Floor_4\tRoom_1\t16:30\t18:15"
+        - expect: "Floor_4\tRoom_1\t18:55\t20:40"
+
+        - expect: "Best Use of Budget"
+        - expect: "Total Value --> 36.7"
+
+        - expect: "Smartboard"
+        - expect: "Chair_2"
+        - expect: "Chair_1"
+        - expect: "Keyboard_2"
+        - expect: "Keyboard_1"
+        - expect: "Computer_1"
+        - expect: "Mouse"
+        - expect: "Desk_3"
+        - expect: "Desk_2"
+        - expect: "Desk_1"
+        - expect: "Cable_Set_2"
+        - expect: "Cable_Set_1"
+        - expect: "Computer_3"
+        - expect: "Monitor_3"
+        - expect: "Monitor_2"
+        - expect: "Monitor_1"
+        - expect: _EOF_
+
+- case_3:
+    run: ./main 3
+    script: 
+        - expect: "Best Schedule for Each Floor"
+
+        - expect: "Floor_1 --> Priority Gain: 305"
+        - expect: "Floor_1\tRoom_2\t09:00\t10:30"
+        - expect: "Floor_1\tRoom_3\t10:30\t12:00"
+        - expect: "Floor_1\tRoom_1\t12:00\t13:45"
+        - expect: "Floor_1\tRoom_1\t14:00\t15:30"
+
+        - expect: "Floor_2 --> Priority Gain: 275"
+        - expect: "Floor_2\tRoom_1\t09:00\t10:30"
+        - expect: "Floor_2\tRoom_4\t10:30\t12:00"
+        - expect: "Floor_2\tRoom_1\t12:15\t13:30"
+        - expect: "Floor_2\tRoom_1\t14:00\t15:30"
+
+        - expect: "Floor_3 --> Priority Gain: 225"
+        - expect: "Floor_3\tRoom_1\t09:30\t11:15"
+        - expect: "Floor_3\tRoom_1\t12:00\t13:30"
+        - expect: "Floor_3\tRoom_1\t14:00\t15:30"
+
+        - expect: "Best Use of Budget"
+        - expect: "Total Value --> 41.0"
+
+        - expect: "Projection_screen"
+        - expect: "Projector"
+        - expect: "Chair_3"
+        - expect: "Chair_2"
+        - expect: "Keyboard_1"
+        - expect: "Computer_1"
+        - expect: "Mouse"
+        - expect: "Whiteboard_2"
+        - expect: "Desk_3"
+        - expect: "Desk_2"
+        - expect: "Cable_Set_3"
+        - expect: "Cable_Set_2"
+        - expect: "Cable_Set_1"
+        - expect: "Computer_2"
+        - expect: "Monitor_3"
+        - expect: "Monitor_2"
+        - expect: "Monitor_1"
+        - expect: _EOF_

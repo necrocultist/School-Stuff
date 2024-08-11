@@ -1,0 +1,314 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+\usepackage{circuitikz}  
+\usepackage{graphicx}  
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{breakcites}
+\usepackage{indentfirst}
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage[cmex10]{amsmath}
+\usepackage{stfloats}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{karnaugh-map}
+\usepackage{subfiles}
+\usepackage{environ}
+\usepackage{amssymb}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{xcolor}
+\usetikzlibrary{intersections}
+\newlength{\crossing}
+\makeatletter
+\setlength{\crossing}{\ctikzvalof{bipoles/crossing/size}\pgf@circ@Rlen}
+\makeatother
+\definecolor{codepurple}{rgb}{0.45,0,0.70}
+\definecolor{theWhite}{gray}{0.9}
+\lstset{backgroundcolor=\color{codepurple},keywordstyle=\color{yellow},numberstyle=\color{white},basicstyle=\color{theWhite},breakatwhitespace=false,breaklines=true,captionpos=b,keepspaces=true,numbers=left,numbersep=5pt,showspaces=false,showstringspaces=false,showtabs=false,tabsize=2,framexleftmargin=5mm,frame=shadowbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     MACROS      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.} 
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\alph{subsubsection}.}
+\newcommand{\qg}[1]{\textcolor{green}{#1}}
+\newcommand{\qr}[1]{\textcolor{red}{#1}}
+
+\newcommand{\gates}[1]{
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{codes/gates/#1.png}
+	\caption{#1 Gate Code}
+	\label{fig7}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{schematics/gates/#1}
+\caption{#1 Gate Design}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{tests/gates/#1-test}
+\caption{#1 Gate Testbench}
+\end{figure}
+}
+\newcommand{\circuit}[1]{
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{circuits/#1.png}
+\caption{Preliminary #1 Circuit Design}
+\end{figure}
+}
+
+\newcommand{\parts}[1]{
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{codes/parts/code-#1.png}
+	\caption{#1 Code}
+	\label{fig7}
+    \end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{schematics/parts/#1.png}
+	\caption{#1 Schematic}
+	\label{fig7}
+    \end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{tests/parts/#1-test.png}
+	\caption{#1 Test Result}
+	\label{fig7}
+\end{figure}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{document}
+\subfile{cover.tex}
+\thispagestyle{empty}
+\addtocontents{toc}{\contentsline {section}{\numberline {}FRONT COVER}{}}
+\addtocontents{toc}{\contentsline {section}{\numberline {}CONTENTS}{}}
+\setcounter{tocdepth}{4}
+\tableofcontents
+\clearpage
+\setcounter{page}{1}
+\setcounter{subsubsection}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{INTRODUCTION}
+In this task, the specified functions were studied in introductory section and circuits needed were created. After that in experiment section part 1, gates were implemented as requested for subsequent use. Eventually, from the second part to the fifth part requested circuits were implemented. The remaining sections involved designing adders with various bit configurations and applying simulations to specific tests.%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Preliminary}
+\subsection{Part 1}
+In this part for the given in equation (F) applied the following operations
+\[F(a, b, c, d) = \cup(0, 2, 6, 7, 8, 10, 11, 15) + \cup_\phi(4)\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Question a}
+Karnaugh diagram
+\begin{center}
+\begin{karnaugh-map}[4][4][1][$CD$][$AB$]
+\minterms{0, 2, 6, 7, 8, 10, 11, 15}\indeterminants{4}\maxterms{1, 3, 4, 5, 9, 12, 13, 14}
+\implicant{7}{6}
+\implicantcorner
+\implicant{15}{11}
+\implicant{11}{10}
+\implicant{7}{15}
+\implicantedge{0}{4}{2}{6}
+\end{karnaugh-map}\vspace{0px}\\
+Karnaugh Map of F
+\end{center}
+\hspace{20pt}Prime implicants of the function\[A'D', B'D', A'BC, AB'C, ACD, BCD\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsubsection{Question b}
+Quine-McCluskey method\par\vspace{15pt}
+\begin{minipage}{0.45\textwidth}
+\begin{center}
+\begin{tabular}{c c c}
+Group & Decimal & Binary\\
+\hline 
+0 & 0  & 0000 \checkmark\\
+1 & 2  & 0010 \checkmark\\
+1 & 8  & 1000 \checkmark\\
+1 & 4  & 0100 \checkmark\\
+2 & 6  & 0110 \checkmark\\
+2 & 10 & 1010 \checkmark\\
+3 & 7  & 0111 \checkmark\\
+3 & 11 & 1011 \checkmark\\
+4 & 15 & 1111 \checkmark
+\end{tabular}
+\end{center}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{center}
+\begin{tabular}{c c c}
+Group & Decimal & Binary\\
+\hline 
+0 & 0, 8    & -000 \checkmark\\
+0 & 0, 4    & 0-00 \checkmark\\
+0 & 0, 2    & 00-0 \checkmark\\
+1 & 10, 2   & -010 \checkmark\\
+1 & 2, 6    & 0-10 \checkmark\\
+1 & 10, 8   & 10-0 \checkmark\\
+1 & 4, 6    & 01-0 \checkmark\\
+2 & 6, 7    & 011- $\times$\\
+2 & 10, 11  & 101- $\times$\\
+3 & 15, 7   & -111 $\times$\\
+3 & 11, 15  & 1-11 $\times$
+\end{tabular}
+\end{center}
+\end{minipage}
+\begin{center}
+\begin{tabular}{c c c}
+Group & Decimal & Binary\\
+\hline 
+0 & 0, 10, 2, 8     & -0-0 $\times$\\
+0 & 0, 2, 4, 6      & 0--0 $\times$\\
+\end{tabular}
+\end{center}
+\par\vspace{1em}
+\hspace{20pt}Prime implicants of the function\[A'D', B'D', A'BC, AB'C, ACD, BCD\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Question c}
+Prime implicants chart\par\vspace{15pt}
+\begin{center}
+\begin{tabular}{c | c c c c c c c c | c}
+Minterms & 0 & 10 & 11 & 15 & 2 & 6 & 7 & 8 & Cost\\
+\hline 
+\qg{A'BC}   &&&&&&\qg{X}&\qr{X}&&\qg{5} \\
+\qr{AB'C}   &&\qr{X}&\qr{X}&&&&&&\qr{5} \\
+\qr{BCD}    &&&&\qr{X}&&&\qr{X}&&\qr{4} \\
+\qg{ACD}    &&&\qg{X}&\qr{X}&&&&&\qg{4} \\
+\qg{B'D'}   &\qg{X}&\qg{X}&&&\qg{X}&&&\qg{X}&\qg{5} \\ 
+\qr{A'D'}   &\qr{X}&&&&\qr{X}&\qr{X}&&&\qr{5} \\
+\end{tabular}
+\end{center}
+\hspace{20pt}The Essential Prime Implicants Are\[B'D', A'BC, ACD\]
+\[Cost = 8 * 2 + 3 = 19\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsubsection{Question d}
+Circuit design with  NOT, AND, and OR gates\par\vspace{15pt}
+\circuit{1-d}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsubsection{Question e}
+Circuit design with only NAND gate\par\vspace{15pt}
+\circuit{1-e}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsubsection{Question f}
+Circuit design with 8:1 Multiplexer, AND, OR and NOT gates\par\vspace{15pt}
+\circuit{1-f}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Part 2}
+In this part for the provided equations (F1, F2) designed circuit using a 3:8 decoder and 2-input OR gates\par
+\[F1(a, b, c) = a'bc + ab'\]
+\[F2(a, b, c) = abc' + ab\]
+\subsubsection{Circuit of F1}
+\circuit{2-a}
+\subsubsection{Circuit of F2}
+\circuit{2-b}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Part 3}
+\begin{center}
+\begin{tabular}{ cc }
+Signed & Unsigned \\  
+\begin{tabular}{ c } 
+\hline
+ Carry bit is important for addition\\
+Borrow can occur in subtraction\\
+\end{tabular} & 
+\begin{tabular}{ c } 
+\hline
+Carry bit is ignored in both operations\\
+Does not have borrow in subtraction\\
+\end{tabular} \\
+\end{tabular}    
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Experiments}
+\subsection{Part 1}
+In this section, we implemented the following gates
+
+\smallskip
+\subsubsection{AND Gate}
+
+\gates{AND}
+
+\subsubsection{OR Gate}
+\gates{OR}
+
+\subsubsection{NOT Gate}
+\gates{NOT}
+
+\subsubsection{XOR Gate}
+\gates{XOR}
+
+\subsubsection{NAND Gate}
+\gates{NAND}
+
+\subsubsection{8:1 Multiplexer}
+\gates{MUX8x1}
+
+\subsubsection{3:8 Decoder}
+\gates{DEC3x8}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Part 2}
+\parts{part2}
+
+\newpage
+\subsection{Part 3}
+\parts{part3}
+
+\newpage
+\subsection{Part 4}
+\parts{part4}
+
+\newpage
+\subsection{Part 5}
+\subsubsection{Part5 - 1}
+\parts{part5-1}
+\subsubsection{Part5 - 2}
+\parts{part5-2}
+
+\newpage
+\subsection{Part 6}
+\parts{part6}
+
+\newpage
+\subsection{Part 7}
+\parts{part7}
+
+\newpage
+\subsection{Part 8}
+\parts{part8}
+
+\newpage
+\subsection{Part 9}
+\parts{part9}
+
+\newpage
+\subsection{Part 10}
+\parts{part10}
+
+\newpage
+\subsection{Part 11}
+\parts{part11}
+\section{RESULTS}
+We used Verilog and the Vivado simulator to implement each circuit. The test outcomes confirmed our expectations based on our computations on paper. On the relevant part, all test results are supplied.
+
+\section{DISCUSSION}
+With this homework assignment, we learned how to use and implement basic verilog gates. Using the circuits we previously constructed on the previous parts, we also implemented several arithmetic circuits. Our outcomes were largely in line with what we had anticipated.
+
+\section{CONCLUSION}
+We have had a great opportunity to learn how to utilize Vivado and the Verilog programming language with this homework. We built some straightforward circuits using gates as well as some rather more challenging arithmetic circuits using the circuits we had already built. To sum up, this was a really lengthy and challenging homework assignment for us, but we were able to successfully complete almost all of the portions.
+
+\end{document}
+
