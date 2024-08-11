@@ -7,7 +7,7 @@ Various Projects, homeworks, and exams I've done throughout my education at ITU 
 # Included Courses
 1. First Grade
     * Intr. to Information Systems
-    * Linear Algebra and Applicat
+    * Linear Algebra and Applications
     * Intr to Sci&Eng Comp (C)
 2. Second Grade
     * Data Structures
