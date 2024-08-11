@@ -2,13 +2,13 @@
 
 ## Description
 
-Various Projects, homeworks and exams I've done throughout my education at ITU Computer Engineering.
+Various Projects, homeworks, and exams I've done throughout my education at ITU Computer Engineering.
 
 # Other Repositories
-- [BLG 223E - Data Structures](https://github.com/necrocultist/Data-Structures-And-Algorithms)
-- [BLG 252E - Object Oriented Programming](https://github.com/necrocultist/Object-Oriented-Projects)
-- [BLG 242E - Logic Circuits Laboratory](https://github.com/necrocultist/Logic-Circuits-Laboratory)
-- [BLG 222E - Computer Organization](https://github.com/necrocultist/Computer-Organization)
+- [BLG 223E - Data Structures](./Second\ Grade/Data\ Structures\ (BLG\ 223E))
+- [BLG 252E - Object Oriented Programming](./Second\ Grade/Object\ Oriented\ Programming\ (BLG\ 252E))
+- [BLG 242E - Logic Circuits Laboratory](./Second\ Grade/Logic\ Circuits\ Laboratory\ (BLG\ 242E))
+- [BLG 222E - Computer Organization](./Second\ Grade/Computer\ Organization\ (BLG\ 222E))
 
 ## Authors
 

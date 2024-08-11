@@ -1,0 +1,252 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+\usepackage{circuitikz}  
+\usepackage{graphicx}  
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{breakcites}
+\usepackage{indentfirst}
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage[cmex10]{amsmath}
+\usepackage{stfloats}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{karnaugh-map}
+\usepackage{subfiles}
+\usepackage{environ}
+\usepackage{amssymb}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{xcolor}
+\usetikzlibrary{intersections}
+
+\newcommand{\circuit}[1]{
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{circuits/#1.png}
+\caption{Part #1 Circuit Design}
+\end{figure}
+}
+\newcommand{\qg}[1]{\textcolor{green}{#1}}
+\newcommand{\qr}[1]{\textcolor{red}{#1}}
+
+\thispagestyle{empty}
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\textbf{}\\
+\textbf{\Large{ISTANBUL TECHNICAL UNIVERSITY}}\\
+\vspace{0.5cm}
+\textbf{\Large{COMPUTER ENGINEERING DEPARTMENT}}\\
+\vspace{2cm}
+\textbf{\Large{BLG 242E\\ LOGIC CIRCUITS LABORATORY\\ EXPERIMENT REPORT}}\\
+\vspace{2.8cm}
+\begin{table}[ht]
+\centering
+\Large{
+\begin{tabular}{lcl}
+\textbf{EXPERIMENT NO}  & : & 2 \\
+\textbf{EXPERIMENT DATE}  & : & 31.03.2023 \\
+\textbf{LAB SESSION}  & : & FRIDAY - 14.00 \\
+\textbf{GROUP NO}  & : & G08 \\
+\end{tabular}}\end{table}\vspace{1cm}
+\textbf{\Large{GROUP MEMBERS:}}\\
+\begin{table}[ht]\centering\Large{
+\begin{tabular}{rcl}
+150200081  & : & KAAN KARATAŞ \\
+150210719  & : & NACİ TOYGUN GÖRMÜŞ \\
+\end{tabular}}
+\end{table}
+\vspace{2.8cm}
+\textbf{\Large{SPRING 2023}}
+\end{center}
+\end{titlepage}
+\thispagestyle{empty}
+
+\setcounter{tocdepth}{4}
+\tableofcontents
+\clearpage
+\setcounter{page}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{INTRODUCTION}
+Throughout this experiment, the C.A.D.E.T. was tested while the specified functions were analyzed. According to the functions, truth tables were produced, and the outcomes were compared to the CADET unit. The experiments' primary goal is to create the circuitry using the required gates and the Karnaugh maps.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{MATERIALS AND METHODS}
+Tools used on this experiment:
+\begin{itemize}
+    \item C.A.D.E.T
+    \item 7400 series ICs
+    \begin{itemize}
+        \item 74xx00 - Quadruple 2-input Positive NAND Gates
+        \item 7404 Hex Inverter
+        \item 74xx08 - Quadruple 2-input Positive AND Gates
+        \item 74xx10 - Triple 3-input Positive NAND Gates
+        \item 74xx11 - Triple 3-input Positive AND Gates
+        \item 74xx27 - Triple 3-input Positive NOR Gates
+        \item 74xx32 - Quadruple 2-input Positive OR Gates
+        \item 74xx138 - 3:8 Decoder
+        \item 74xx151 - 8:1 Multiplexer
+    \end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\section{EXPERIMENT}
+\subsection{Preliminery}
+The following function's prime implicants have been constructed on this section using a Karnaugh map and implemented as logic circuits utilizing AND, OR, and NOT gates.
+\[F(a, b, c, d) = \cup_1(1, 4, 6, 11) + \cup_\phi(0, 2, 8, 9, 14, 15)\]
+
+\subsubsection{Karnaugh Map}
+\begin{minipage}{0.45\textwidth}
+\begin{center}
+\begin{karnaugh-map}[4][4][1][$CD$][$AB$]
+\minterms{1, 4, 6, 11}\indeterminants{0, 2, 8, 9, 14, 15}\maxterms{3, 5, 7, 10, 12, 13}
+\implicantedge{0}{4}{2}{6}
+\implicant{15}{11}
+\implicantedge{0}{1}{8}{9}
+\end{karnaugh-map}\vspace{0px}
+\end{center}
+
+\centering Karnaugh Map of F
+\[ A'D' + B'C' + ACD \]
+\[ Cost = 6 + 6 + 6 = 18 \]
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{center}
+\begin{tabular}{c c c c | c}
+A & B & C & D &  \textcolor{red}{A'D' + B'C' + ACD}\\
+\hline 
+0 & 0 & 0 & 0 &  \textcolor{red}{X}\\
+0 & 0 & 0 & 1 &  \textcolor{red}{1}\\
+0 & 0 & 1 & 0 &  \textcolor{red}{X}\\
+0 & 0 & 1 & 1 &  \textcolor{red}{0}\\
+0 & 1 & 0 & 0 &  \textcolor{red}{1}\\
+0 & 1 & 0 & 1 &  \textcolor{red}{0}\\
+0 & 1 & 1 & 0 &  \textcolor{red}{1}\\
+0 & 1 & 1 & 1 &  \textcolor{red}{0}\\
+1 & 0 & 0 & 0 &  \textcolor{red}{X}\\
+1 & 0 & 0 & 1 &  \textcolor{red}{X}\\
+1 & 0 & 1 & 0 &  \textcolor{red}{0}\\
+1 & 0 & 1 & 1 &  \textcolor{red}{1}\\
+1 & 1 & 0 & 0 &  \textcolor{red}{0}\\
+1 & 1 & 0 & 1 &  \textcolor{red}{0}\\
+1 & 1 & 1 & 0 &  \textcolor{red}{X}\\
+1 & 1 & 1 & 1 &  \textcolor{red}{X}\\
+\end{tabular}
+\end{center}
+\centering Truth Table of F\\
+\end{minipage}
+\par\vspace{0.8cm}
+Even though other implicants, such as AB'D, may have been picked to cover minterm 11, ACD was chosen since it has the lowest cost.
+
+\par\vspace{15pt}
+
+\subsubsection{Quine-McCluskey Method}
+\begin{minipage}{0.45\textwidth}
+\begin{center}
+\begin{tabular}{c c c}
+Group & Decimal & Binary\\
+\hline 
+0 & 0  & 0000 \checkmark\\
+1 & 1  & 0001 \checkmark\\
+1 & 2  & 0010 \checkmark\\
+1 & 4  & 0100 \checkmark\\
+1 & 8  & 1000 \checkmark\\
+2 & 6  & 0110 \checkmark\\
+2 & 9  & 1001 \checkmark\\
+3 & 11 & 1011 \checkmark\\
+3 & 14 & 1011 \checkmark\\
+3 & 15 & 1111 \checkmark
+
+\end{tabular}
+\end{center}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{center}
+\begin{tabular}{c c c}
+Group & Decimal & Binary\\
+\hline 
+0 & 0, 1    & 000- \checkmark\\
+0 & 0, 2    & 00-0 \checkmark\\
+0 & 0, 4    & 0-00 \checkmark\\
+0 & 0, 8    & -000 \checkmark\\
+1 & 1, 9    & -001 \checkmark\\
+1 & 2, 6    & 01-0 \checkmark\\
+1 & 4, 6    & 01-0 \checkmark\\
+1 & 8, 9    & 100- \checkmark\\
+2 & 6, 14   & -110  $\times$\\
+2 & 9, 11   & 10-1 $\times$\\
+3 & 11, 15  & 1-11 $\times$\\
+3 & 14, 15  & 111- $\times$
+
+\end{tabular}
+\end{center}
+\end{minipage}
+\begin{center}
+\begin{tabular}{c c c}
+Group & Decimal & Binary\\
+\hline 
+0 & 0, 1, 8, 9      & -00- $\times$\\
+0 & 0, 2, 4, 6      & 0--0 $\times$\\
+\end{tabular}
+\end{center}
+\par\vspace{1em}
+
+\begin{center}
+\hspace{20pt}Prime implicants of the function\[A'D', B'C', ABC, AB'D, ACD, BCD'\]
+\end{center}
+
+\subsubsection{Prime Implicant Chart}
+    \begin{center}
+        \begin{tabular}{c | c c c c c c c c | c}
+            Minterms & 1 & 4 & 6 & 11 & Cost\\
+            \hline 
+            \qg{A'D'}   &&\qg{X}&\qg{X}&&\qg{6} \\
+            \qg{B'C'}   &\qg{X}&&&&\qg{6} \\
+            \qr{ABC}    &&&&&\qr{6} \\
+            \qr{AB'D}   &&&&\qr{X}&\qr{7} \\
+            \qg{ACD}    &&&&\qg{X}&\qg{6} \\
+            \qr{BCD'}    &&\qr{X}&&&\qr{7} \\
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        \hspace{20pt}The Essential Prime Implicants Are\[B'D', A'BC, ACD\]
+        \[Cost = 8 * 2 + 3 = 19\]
+    \end{center}
+    
+\subsection{Part 1}
+\circuit{1}
+
+\newpage
+
+\subsection{Part 2}
+In this section, the previous function will be rebuilt using an 8:1 multiplexer and NOT gates.
+\par\vspace{0.8cm}
+\circuit{2}
+
+\par\vspace{0.5cm}
+
+\section{RESULTS}
+The intended outputs are obtained when the circuit is configured with all of the provided functionalities. The experiments' outcomes were consistent with their truth tables.
+
+\par\vspace{0.5cm}
+
+\section{DISCUSSION}
+This experiment highlights the value of the methods employed for function analysis. Afterwards it was demonstrated that there are various ways to imply a circuit and how important it is to use the one with the lowest cost.
+
+\par\vspace{0.5cm}
+
+\section{CONCLUSION}
+Even though the gates of two distinct circuits are different, a function can nevertheless generate the same outcome. In this method, a circuit for a device can be chosen out of several others with the exact same output that is most appropriate and has the lowest cost.
+
+\newpage
+\addcontentsline{toc}{section}{\numberline {}REFERENCES}
+
+\bibliographystyle{unsrt}
+\bibliography{reference}
+
+\end{document}
