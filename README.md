@@ -2,25 +2,25 @@
 
 ## Description
 
-Various Projects, homeworks, and exams I've done throughout my education at ITU Computer Engineering.
+Various projects, homeworks, and exams I've done throughout my education at ITU Computer Engineering.
 
 # Included Courses
 1. First Grade
-    * [Introduction to Information Systems](First%20Grade/Introduction%20to%20Information%20Systems)
-    * [Linear Algebra and Applications](First\ Grade/Linear Algebra and Applications)
-    * [Introduction to Scientific&Eng.Computing (C)](First Grade/Introduction to Scientific&Eng.Computing (C))
+    * [Introduction to Information Systems](First%20Grade/Introduction%20to%20Information%20Systems/)
+    * [Linear Algebra and Applications](First%20Grade/Linear%20Algebra%20and%20Applications/)
+    * [Introduction to Scientific&Eng.Computing (C)](First%20Grade/Introduction%20to%20Scientific&Eng.Computing%20(C)/)
 2. Second Grade
-    * [Data Structures]()
-    * [Object Oriented Programming]()
-    * [Logic Circuits Laboratory]()
-    * [Computer Organization]()
+    * [Data Structures](Second%20Grade/Data%20Structures/)
+    * [Object Oriented Programming](Second%20Grade/Object%20Oriented%20Programming/)
+    * [Logic Circuits Laboratory](Second%20Grade/Logic%20Circuits%20Laboratory/)
+    * [Computer Organization](Second%20Grade/Computer%20Organization/)
 3. Third Grade
-    * [Analysis of Algorithms I]()
-    * [Analysis of Algorithms II]()
-    * [Computer Architecture]()
-    * [Computer Operating Systems]()
-    * [Introduction to Bioinformatics]()
-    * [Operations Research]()
+    * [Analysis of Algorithms I](Third%20Grade/Analysis%20of%20Algorithms%20I/)
+    * [Analysis of Algorithms II](Third%20Grade/Analysis%20of%20Algorithms%20II/)
+    * [Computer Architecture](Third%20Grade/Computer%20Architecture/)
+    * [Computer Operating Systems](Third%20Grade/Computer%20Operating%20Systems/)
+    * [Introduction to Bioinformatics](Third%20Grade/Introduction%20to%20Bioinformatics/)
+    * [Operations Research](Third%20Grade/Operations%20Research/)
 
 ## Authors
 
